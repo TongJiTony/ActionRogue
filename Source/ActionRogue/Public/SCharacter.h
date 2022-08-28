@@ -20,6 +20,7 @@ public:
 	ASCharacter();
 
 protected:
+	// First two components
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArmComp;
 
@@ -28,6 +29,9 @@ protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	//moving function
+	void MoveForward(float Value);
 
 public:	
 	// Called every frame
