@@ -48,3 +48,61 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("Turn", this, &ASCharacter::AddControllerYawInput);
 }
 
+<<<<<<< HEAD
+// motion function
+void ASCharacter::MoveForward(float Value)
+{
+	FRotator ControlRot = GetControlRotation();
+	ControlRot.Pitch = 0.0f;
+	ControlRot.Roll = 0.0f;
+
+	AddMovementInput(ControlRot.Vector(), Value);
+}
+
+void ASCharacter::MoveRight(float Value)
+{
+	FRotator ControlRot = GetControlRotation();
+	ControlRot.Pitch = 0.0f;
+	ControlRot.Roll = 0.0f;
+
+	FVector RightVector = FRotationMatrix(ControlRot).GetScaledAxis(EAxis::Y);
+
+	AddMovementInput(RightVector, Value);
+}
+
+void ASCharacter::PrimaryAttack() {
+	//play the animation to raise the hand
+	PlayAnimMontage(PrimaryAttackAnim);
+
+	//add a timer to implement a delay or the projectile would be spawn immediately
+	float DelayTime = 0.15f;
+	GetWorldTimerManager().SetTimer(PrimaryAttack_TimeHandle, this, &ASCharacter::PrimaryAttackSpawn, DelayTime);
+
+	//if character die, clear the timer to stop the attackSpawn
+	//GetWorldTimerManager().ClearTimer(PrimaryAttack_TimeHandle);
+}
+
+void ASCharacter::PrimaryAttackSpawn() {
+
+	FVector RightHandLocation = GetMesh()->GetSocketLocation("Muzzle_01");
+
+	FTransform SpawnTM = FTransform(GetControlRotation(), RightHandLocation);
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	SpawnParams.Instigator = this;//to recognize who spawn the projectile
+
+	GetWorld()->SpawnActor<AActor>(ProjectileClass, SpawnTM, SpawnParams);
+}
+
+void ASCharacter::PrimaryInteract() {
+
+	InteractComp->PrimaryInteract();
+
+}
+
+void ASCharacter::Dash() {
+	
+}
+=======
+>>>>>>> parent of 15d2770 (Updated to lesson 12)

@@ -7,14 +7,36 @@
 #include "SCharacter.generated.h"
 
 class UCameraComponent;
+<<<<<<< HEAD
+class USpringArmComponent;
+class USInteractionComponent;
+class UAnimMontage;
+=======
 class USpringArmComponent; 
 
+>>>>>>> parent of 15d2770 (Updated to lesson 12)
 
 UCLASS()
 class ACTIONROGUE_API ASCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+<<<<<<< HEAD
+protected:
+	//MagicProjectile
+	UPROPERTY(EditAnywhere, Category = "Attack")
+		TSubclassOf<AActor> ProjectileClass;
+
+	//attack animation
+	UPROPERTY(EditAnywhere, Category = "Attack")
+		UAnimMontage* PrimaryAttackAnim;
+
+	//Timer for controlling delay
+	FTimerHandle PrimaryAttack_TimeHandle;
+
+
+=======
+>>>>>>> parent of 15d2770 (Updated to lesson 12)
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
@@ -33,6 +55,22 @@ protected:
 	//moving function
 	void MoveForward(float Value);
 
+<<<<<<< HEAD
+	void MoveRight(float Value);
+
+	void Dash();
+
+	//AttackAction
+	void PrimaryAttack();
+
+	//AttackSpawn
+	void PrimaryAttackSpawn();
+
+	//Interaction
+	void PrimaryInteract();
+
+=======
+>>>>>>> parent of 15d2770 (Updated to lesson 12)
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
